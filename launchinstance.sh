@@ -54,7 +54,7 @@ echo "Start to launch instance"
 #sed -i "$line d" tmpimage.json 
 #sed -i "$line i$newimagelist," tmpimage.json
 
-orchestration_name=`cat $2 | grep name | head -n 1 | awk -F ":" '{print $2}'|sed 's/\"//g'|sed 's/\,//g'`
+orchestration_name=`cat $1 | grep name | head -n 1 | awk -F ":" '{print $2}'|sed 's/\"//g'|sed 's/\,//g'`
 
 #If the orchestration is already there, stop and delete it.
 image_exist=`napi list orchestration $orchestration_name`
@@ -74,7 +74,7 @@ else
 fi
 
 #Add orchestration and start it.
-napi add orchestration $2 -F name
+napi add orchestration $1 -F name
 
 napi start orchestration $orchestration_name -F name,status
 
