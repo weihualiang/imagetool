@@ -181,6 +181,8 @@ do
       new_image_status=`napi list orchestration $orchestration_name -F status | tail -n 1`
 done
 
+napi delete machineimage ${BASE_MACHINEIMAGE_NAME}
+napi delete imagelist ${BASE_IMAGELIST_NAME}
 
 instance=`napi list orchestration $orchestration_name -f json | grep name |head -n 1 | awk -F : '{print $2}'|sed 's/\"//g'|sed 's/\,//g'`
 
